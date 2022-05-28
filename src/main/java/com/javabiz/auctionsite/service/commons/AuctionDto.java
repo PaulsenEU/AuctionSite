@@ -3,11 +3,13 @@ package com.javabiz.auctionsite.service.commons;
 import com.javabiz.auctionsite.service.auctionmanagement.model.Offer;
 import com.javabiz.auctionsite.service.auctionmanagement.model.UserModel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Size;
 import java.time.OffsetDateTime;
 
 @Getter
+@NoArgsConstructor
 public class AuctionDto {
     private Long id;
     private UserModel owner;
