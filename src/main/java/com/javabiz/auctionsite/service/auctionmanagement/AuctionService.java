@@ -1,7 +1,7 @@
 package com.javabiz.auctionsite.service.auctionmanagement;
 
-import com.javabiz.auctionsite.service.auctionmanagement.model.Auction;
-import com.javabiz.auctionsite.service.auctionmanagement.model.Offer;
+import com.javabiz.auctionsite.service.model.Auction;
+import com.javabiz.auctionsite.service.model.Offer;
 import com.javabiz.auctionsite.service.commons.AuctionDto;
 import com.javabiz.auctionsite.service.commons.OfferDto;
 import lombok.AllArgsConstructor;

@@ -1,15 +1,15 @@
 package com.javabiz.auctionsite.service.commons;
 
-import com.javabiz.auctionsite.service.auctionmanagement.model.Offer;
-import com.javabiz.auctionsite.service.auctionmanagement.model.UserModel;
+import com.javabiz.auctionsite.service.model.Offer;
+import com.javabiz.auctionsite.service.model.UserModel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.Size;
 import java.time.OffsetDateTime;
 
 @Getter
-@NoArgsConstructor
+@Setter
 public class AuctionDto {
     private Long id;
     private UserModel owner;
@@ -35,8 +35,17 @@ public class AuctionDto {
 
     // Use to update
     public AuctionDto(String title, String content) {
+        this.ongoing = true;
+        this.winningOffer = null;
         this.title = title;
         this.content = content;
+        this.updatedAt = OffsetDateTime.now();
+    }
+
+    public AuctionDto() {
+        this.ongoing = true;
+        this.winningOffer = null;
+        this.createdAt = OffsetDateTime.now();
         this.updatedAt = OffsetDateTime.now();
     }
 }

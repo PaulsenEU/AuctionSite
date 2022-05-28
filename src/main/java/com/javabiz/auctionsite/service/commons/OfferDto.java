@@ -1,7 +1,7 @@
 package com.javabiz.auctionsite.service.commons;
 
-import com.javabiz.auctionsite.service.auctionmanagement.model.Auction;
-import com.javabiz.auctionsite.service.auctionmanagement.model.UserModel;
+import com.javabiz.auctionsite.service.model.Auction;
+import com.javabiz.auctionsite.service.model.UserModel;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;

@@ -1,9 +1,8 @@
-package com.javabiz.auctionsite.service.auctionmanagement.model;
+package com.javabiz.auctionsite.service.model;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,7 +13,6 @@ import java.time.OffsetDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class Auction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,6 +39,13 @@ public class Auction {
         this.owner = owner;
         this.title = title;
         this.content = content;
+        this.ongoing = true;
+        this.winningOffer = null;
+        this.createdAt = OffsetDateTime.now();
+        this.updatedAt = OffsetDateTime.now();
+    }
+
+    public Auction() {
         this.ongoing = true;
         this.winningOffer = null;
         this.createdAt = OffsetDateTime.now();

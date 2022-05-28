@@ -1,4 +1,4 @@
-package com.javabiz.auctionsite.service.auctionmanagement.model;
+package com.javabiz.auctionsite.service.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

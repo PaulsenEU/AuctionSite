@@ -1,7 +1,8 @@
 package com.javabiz.auctionsite.service.auctionmanagement;
 
-import com.javabiz.auctionsite.service.auctionmanagement.model.Auction;
+import com.javabiz.auctionsite.service.model.Auction;
 import com.javabiz.auctionsite.service.commons.AuctionDto;
+import com.javabiz.auctionsite.service.usermanagement.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
