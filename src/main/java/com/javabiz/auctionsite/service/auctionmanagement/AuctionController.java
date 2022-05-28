@@ -1,7 +1,9 @@
 package com.javabiz.auctionsite.service.auctionmanagement;
 
+import com.javabiz.auctionsite.service.mailservice.MailService;
 import com.javabiz.auctionsite.service.model.Auction;
 import com.javabiz.auctionsite.service.commons.AuctionDto;
+import com.javabiz.auctionsite.service.model.Offer;
 import com.javabiz.auctionsite.service.usermanagement.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import javax.xml.bind.ValidationException;
 import java.util.List;
 
 @Controller
@@ -19,6 +22,7 @@ import java.util.List;
 public class AuctionController {
 
     private final AuctionService auctionService;
+    private final MailService mailService;
 
     @GetMapping()
     public String getAll(Model model) {
@@ -36,8 +40,29 @@ public class AuctionController {
 
     @GetMapping("/{id}/offers")
     public String getOffersForAuction(Model model, @PathVariable Long id){
+        Auction auction = auctionService.findAuction(id);
         model.addAttribute("offerList", auctionService.findAllOffersForAuction(id));
+        model.addAttribute("auctionId", id);
+        model.addAttribute("isOnGoing", auction.isOngoing());
+        if(!auction.isOngoing() && auction.getWinningOffer() != null){
+            model.addAttribute("winnerId", auction.getWinningOffer().getId());
+        }
+
         return "offer/getAllForAuction";
+    }
+
+    @GetMapping("/{id}/offers/{offerId}")
+    public String endAuctionByChoosingTheOffer(@PathVariable Long id, @PathVariable Long offerId){
+        Auction auction = auctionService.findAuction(id);
+        Offer offer = auctionService.findOffer(offerId);
+
+        assert auction.getOwner()!=null;
+        assert offer.getOffering()!=null;
+
+        auctionService.endAuction(id, offerId);
+        mailService.sendConfirmationMailToBuyer(auction.getOwner());
+        mailService.sendConfirmationMailToBuyer(offer.getOffering());
+        return "redirect:/auction/";
     }
 
     @GetMapping("/add")

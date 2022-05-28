@@ -43,7 +43,6 @@ public class AuctionService {
         auction.setOngoing(false);
         auction.setWinningOffer(offer);
         auctionRepository.save(auction);
-        //TODO: notify winning user via email
     }
 
     public void deleteAuction(Long id){

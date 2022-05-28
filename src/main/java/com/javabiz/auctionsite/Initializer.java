@@ -49,7 +49,7 @@ public class Initializer implements CommandLineRunner {
     }
 
     public UserModel addUser(String name, String surname, String username, String password, int age, Role role){
-        UserModel userModel = new UserModel(name, surname, username, password, age, role);
+        UserModel userModel = new UserModel(name, surname, username, username+"@gmail.com", password, age, role);
         userRepository.save(userModel);
         return userModel;
     }
