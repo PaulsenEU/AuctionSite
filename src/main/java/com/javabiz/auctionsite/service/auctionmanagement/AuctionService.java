@@ -36,6 +36,16 @@ public class AuctionService {
         auctionRepository.save(auction);
     }
 
+    // This ends auction with auctionId by accepting offer with offerId
+    public void endAuction(Long auctionId, Long offerId){
+        Offer offer = this.findOffer(offerId);
+        Auction auction = this.findAuction(auctionId);
+        auction.setOngoing(false);
+        auction.setWinningOffer(offer);
+        auctionRepository.save(auction);
+        //TODO: notify winning user via email
+    }
+
     public void deleteAuction(Long id){
         Auction auction = this.findAuction(id);
         auctionRepository.delete(auction);
@@ -43,6 +53,10 @@ public class AuctionService {
 
     public List<Offer> findAllOffersForAuction(Long auctionId){
         return offerRepository.findByAuctionId(auctionId);
+    }
+
+    public Offer findOffer(Long id){
+        return offerRepository.findById(id).orElseThrow();
     }
 
     public void createOffer(OfferDto offerDto){

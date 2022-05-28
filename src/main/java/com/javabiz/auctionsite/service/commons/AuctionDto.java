@@ -1,5 +1,6 @@
 package com.javabiz.auctionsite.service.commons;
 
+import com.javabiz.auctionsite.service.auctionmanagement.model.Offer;
 import com.javabiz.auctionsite.service.auctionmanagement.model.UserModel;
 import lombok.Getter;
 
@@ -14,6 +15,8 @@ public class AuctionDto {
     private String title;
     @Size(min=3, max=500)
     private String content;
+    private boolean ongoing;
+    private Offer winningOffer;
     private OffsetDateTime createdAt;
     private OffsetDateTime updatedAt;
 
@@ -22,6 +25,8 @@ public class AuctionDto {
         this.owner = owner;
         this.title = title;
         this.content = content;
+        this.ongoing = true;
+        this.winningOffer = null;
         this.createdAt = OffsetDateTime.now();
         this.updatedAt = OffsetDateTime.now();
     }

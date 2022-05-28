@@ -27,6 +27,10 @@ public class Auction {
     @NotNull
     @Size(min=3, max=500, message = "{err.string.noteContent}")
     private String content;
+    // If auction is active
+    private boolean ongoing;
+    @OneToOne
+    private Offer winningOffer;
     @Column(name = "created_at")
     private OffsetDateTime createdAt;
     @Column(name = "updated_at")
