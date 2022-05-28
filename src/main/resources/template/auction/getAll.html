@@ -29,6 +29,7 @@
             <th>Title</th>
             <th>Content</th>
             <th>Created at</th>
+            <th></th>
         </tr>
         <tr th:each="auction : ${auctionList}">
             <td th:text="${auction.getId()}"></td>
@@ -36,6 +37,10 @@
             <td th:text="${auction.getTitle()}"></td>
             <td th:text="${auction.getContent()}"></td>
             <td th:text="${auction.getCreatedAt().getDayOfMonth()}+'.'+${auction.getCreatedAt().getMonthValue()}+'.'+${auction.getCreatedAt().getYear()}+' '+${auction.getCreatedAt().getHour()}+':'+${auction.getCreatedAt().getMinute()}"></td>
+            <td>
+                <a th:href="@{/auction/{id}(id=${auction.getId()})}" class="btn btn-primary m-1">Details</a>
+                <a th:href="@{/auction/edit/{id}(id=${auction.getId()})}" class="btn btn-secondary m-1">Edit</a>
+            </td>
         </tr>
     </table>
 </div>
