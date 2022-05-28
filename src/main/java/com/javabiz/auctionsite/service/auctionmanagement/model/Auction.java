@@ -35,4 +35,15 @@ public class Auction {
     private OffsetDateTime createdAt;
     @Column(name = "updated_at")
     private OffsetDateTime updatedAt;
+
+    //Only for initializer purpose
+    public Auction(UserModel owner, String title, String content) {
+        this.owner = owner;
+        this.title = title;
+        this.content = content;
+        this.ongoing = true;
+        this.winningOffer = null;
+        this.createdAt = OffsetDateTime.now();
+        this.updatedAt = OffsetDateTime.now();
+    }
 }

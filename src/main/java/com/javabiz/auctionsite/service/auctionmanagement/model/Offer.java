@@ -26,4 +26,13 @@ public class Offer {
     private OffsetDateTime createdAt;
     @Column(name = "updated_at")
     private OffsetDateTime updatedAt;
+
+    //Only for initializer purpose
+    public Offer(Auction auction, UserModel offering, double price) {
+        this.auction = auction;
+        this.offering = offering;
+        this.price = price;
+        this.createdAt = OffsetDateTime.now();
+        this.updatedAt = OffsetDateTime.now();
+    }
 }

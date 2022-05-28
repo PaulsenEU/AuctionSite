@@ -34,4 +34,14 @@ public class UserModel {
     private int age;
     @NotNull
     private Role role;
+
+    //Only for initializer purpose
+    public UserModel(String name, String surname, String username, String password, int age, Role role) {
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.age = age;
+        this.role = role;
+    }
 }
