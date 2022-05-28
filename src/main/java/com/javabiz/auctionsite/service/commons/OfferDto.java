@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
 
-@NoArgsConstructor
 public class OfferDto {
     private Long id;
     private Auction auction;
@@ -19,6 +18,11 @@ public class OfferDto {
         this.auction = auction;
         this.offering = offering;
         this.price = price;
+        this.createdAt = OffsetDateTime.now();
+        this.updatedAt = OffsetDateTime.now();
+    }
+
+    public OfferDto() {
         this.createdAt = OffsetDateTime.now();
         this.updatedAt = OffsetDateTime.now();
     }

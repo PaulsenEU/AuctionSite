@@ -34,6 +34,12 @@ public class AuctionController {
         return "auction/getAuction";
     }
 
+    @GetMapping("/{id}/offers")
+    public String getOffersForAuction(Model model, @PathVariable Long id){
+        model.addAttribute("offerList", auctionService.findAllOffersForAuction(id));
+        return "offer/getAllForAuction";
+    }
+
     @GetMapping("/add")
     public String createAuction(Model model) {
         if (!model.containsAttribute("auction")) {

@@ -12,7 +12,6 @@ import java.time.OffsetDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class Offer {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -32,6 +31,11 @@ public class Offer {
         this.auction = auction;
         this.offering = offering;
         this.price = price;
+        this.createdAt = OffsetDateTime.now();
+        this.updatedAt = OffsetDateTime.now();
+    }
+
+    public Offer() {
         this.createdAt = OffsetDateTime.now();
         this.updatedAt = OffsetDateTime.now();
     }
