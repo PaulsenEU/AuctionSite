@@ -60,7 +60,7 @@ public class AuctionController {
         assert offer.getOffering()!=null;
 
         auctionService.endAuction(id, offerId);
-        mailService.sendConfirmationMailToBuyer(auction.getOwner());
+        mailService.sendConfirmationMailToSeller(auction.getOwner());
         mailService.sendConfirmationMailToBuyer(offer.getOffering());
         return "redirect:/auction/";
     }

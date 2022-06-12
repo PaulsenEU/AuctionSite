@@ -5,12 +5,14 @@ import com.javabiz.auctionsite.service.model.Offer;
 import com.javabiz.auctionsite.service.commons.AuctionDto;
 import com.javabiz.auctionsite.service.commons.OfferDto;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class AuctionService {
     private final AuctionRepository auctionRepository;
     private final OfferRepository offerRepository;
@@ -27,6 +29,7 @@ public class AuctionService {
     public void createAuction(AuctionDto auctionDto){
         Auction auction = auctionMapper.fromDto(auctionDto);
         auctionRepository.save(auction);
+        log.info("Auction with id {} successfully created.", auction.getId());
     }
 
     public void editAuction(Long auctionId, AuctionDto auctionDto){
@@ -34,6 +37,7 @@ public class AuctionService {
         auction.setTitle(auctionDto.getTitle());
         auction.setContent(auctionDto.getContent());
         auctionRepository.save(auction);
+        log.info("Auction with id {} successfully updated.", auction.getId());
     }
 
     // This ends auction with auctionId by accepting offer with offerId
@@ -43,12 +47,14 @@ public class AuctionService {
         auction.setOngoing(false);
         auction.setWinningOffer(offer);
         auctionRepository.save(auction);
+        log.info("Auction with id {} ended.", auction.getId());
         return auctionRepository.findById(auctionId).orElseThrow();
     }
 
     public void deleteAuction(Long id){
         Auction auction = this.findAuction(id);
         auctionRepository.delete(auction);
+        log.info("Auction with id {} successfully deleted.", id);
     }
 
     public List<Offer> findAllOffersForAuction(Long auctionId){
