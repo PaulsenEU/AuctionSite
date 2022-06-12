@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -23,7 +24,8 @@ public class MailService {
         sendEmail(buyer.getEmail(), "Congrats! You just sold something", "Someone just bough the objects of your auction.");
     }
 
-    private void sendEmail(String to, String subject, String content) {
+    @Async
+    void sendEmail(String to, String subject, String content) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(to);
         msg.setFrom(Objects.requireNonNull(environment.getProperty("spring.mail.username")));

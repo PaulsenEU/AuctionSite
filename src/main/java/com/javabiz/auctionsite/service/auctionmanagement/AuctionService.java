@@ -37,12 +37,13 @@ public class AuctionService {
     }
 
     // This ends auction with auctionId by accepting offer with offerId
-    public void endAuction(Long auctionId, Long offerId){
+    public Auction endAuction(Long auctionId, Long offerId){
         Offer offer = this.findOffer(offerId);
         Auction auction = this.findAuction(auctionId);
         auction.setOngoing(false);
         auction.setWinningOffer(offer);
         auctionRepository.save(auction);
+        return auctionRepository.findById(auctionId).orElseThrow();
     }
 
     public void deleteAuction(Long id){
