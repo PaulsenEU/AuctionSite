@@ -25,13 +25,14 @@
             <h3>Note details</h3>
             <a th:href="@{/auction/edit/{id}(id=${auction.getId()})}" class="btn btn-secondary m-1">Edit</a>
             <div>
-                <form th:action="@{/auction/{id}(id=${auction.getId()})}" th:method="delete">
-                    <button class="btn btn-danger m-1" type="submit">Delete</button>
-                </form>
+                <a th:href="@{/auction/{id}/offer(id=${auction.getId()})}" class="btn btn-success">Make an offer</a><hr/>
             </div>
             <div>
                 <form th:action="@{/auction/{id}/offers(id=${auction.getId()})}" th:method="get">
                     <button class="btn btn-info m-1" type="submit">See offers</button>
+                </form>
+                <form th:action="@{/auction/{id}(id=${auction.getId()})}" th:method="delete">
+                    <button class="btn btn-danger m-1" type="submit">Delete</button>
                 </form>
             </div>
             <hr/>

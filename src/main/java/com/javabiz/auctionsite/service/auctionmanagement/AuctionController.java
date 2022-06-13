@@ -1,5 +1,6 @@
 package com.javabiz.auctionsite.service.auctionmanagement;
 
+import com.javabiz.auctionsite.service.commons.OfferDto;
 import com.javabiz.auctionsite.service.mailservice.MailService;
 import com.javabiz.auctionsite.service.model.Auction;
 import com.javabiz.auctionsite.service.commons.AuctionDto;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import javax.xml.bind.ValidationException;
 import java.util.List;
 
 @Controller
@@ -63,6 +63,25 @@ public class AuctionController {
         mailService.sendConfirmationMailToSeller(auction.getOwner());
         mailService.sendConfirmationMailToBuyer(offer.getOffering());
         return "redirect:/auction/";
+    }
+
+    @GetMapping("/{id}/offer")
+    public String makeOffer(@PathVariable Long id, Model model) {
+        if (!model.containsAttribute("offer")) {
+            model.addAttribute("offer", new OfferDto());
+            model.addAttribute("auctionId", id);
+        }
+        return "auction/makeOffer";
+    }
+
+    @PostMapping("/makeOffer/{id}")
+    public String addOffer(@Valid OfferDto offer,
+                             @PathVariable Long id,
+                             RedirectAttributes redirectAttributes) {
+        offer.setAuction(auctionService.findAuction(id));
+        auctionService.createOffer(offer);
+        redirectAttributes.addFlashAttribute("success", "Record has been successfully added.");
+        return "redirect:/auction/"+id;
     }
 
     @GetMapping("/add")
