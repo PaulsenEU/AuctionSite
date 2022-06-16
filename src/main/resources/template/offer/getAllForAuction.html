@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/site.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark">
@@ -20,26 +21,29 @@
     </div>
 </nav>
 <div layout:fragment="content">
-    <h3>Offer list</h3>
-    <table class="table table-striped">
-        <tr>
-            <th>ID</th>
-            <th>Person offering</th>
-            <th>Price</th>
-            <th>Created at</th>
-            <th></th>
-        </tr>
-        <tr th:each="offer : ${offerList}">
-            <td th:text="${offer.getId()}"></td>
-            <td th:text="${offer.getOffering()?.getUsername()}"></td>
-            <td th:text="${offer.getPrice()}"></td>
-            <td th:text="${offer.getCreatedAt().getDayOfMonth()}+'.'+${offer.getCreatedAt().getMonthValue()}+'.'+${offer.getCreatedAt().getYear()}+' '+${offer.getCreatedAt().getHour()}+':'+${offer.getCreatedAt().getMinute()}"></td>
-            <td>
-                <a th:if="${isOnGoing==true}" th:href="@{/auction/{id}/offers/{offerId}(id=${auctionId}, offerId=${offer.getId()})}" class="btn btn-success m-1">Sell</a>
-                <a th:if="${winnerId}==${offer.getId()}">WINNER</a>
-            </td>
-        </tr>
-    </table>
+    <h1 class="heading">Offer list</h1>
+    <div class="table-container">
+        <table class="table table-striped">
+            <tr class="table-header">
+                <th>ID</th>
+                <th>Person offering</th>
+                <th>Price</th>
+                <th>Created at</th>
+                <th></th>
+            </tr>
+            <tr th:each="offer : ${offerList}">
+                <td th:text="${offer.getId()}"></td>
+                <td th:text="${offer.getOffering()?.getUsername()}"></td>
+                <td th:text="${offer.getPrice()}"></td>
+                <td th:text="${offer.getCreatedAt().getDayOfMonth()}+'.'+${offer.getCreatedAt().getMonthValue()}+'.'+${offer.getCreatedAt().getYear()}+' '+${offer.getCreatedAt().getHour()}+':'+${offer.getCreatedAt().getMinute()}"></td>
+                <td>
+                    <a th:if="${isOnGoing==true}" th:href="@{/auction/{id}/offers/{offerId}(id=${auctionId}, offerId=${offer.getId()})}" class="btn btn-success m-1">Sell</a>
+                    <a th:if="${winnerId}==${offer.getId()}">WINNER</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
 </div>
 </body>
 </html>
