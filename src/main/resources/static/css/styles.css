@@ -1,0 +1,21 @@
+.heading {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.error-msg {
+    color:red;
+}
+
+.table-container {
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.table-header {
+    background: #c4c4c2;
+    text-shadow:rgb(255, 255, 255) 1px 1px 5px;
+}
