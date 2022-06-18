@@ -20,7 +20,7 @@ import java.util.List;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/users")
-public class UserController implements UserDetailsService {
+public class UserController {
 
     private final UserRepository userRepository;
 
@@ -29,14 +29,5 @@ public class UserController implements UserDetailsService {
         List<UserModel> userList = userRepository.findAll();
         model.addAttribute("userList", userList);
         return "users/getAll";
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var user = userRepository.findByUsername(username);
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.getRole().name()));
-
-        return new User(user.getUsername(), user.getPassword(), authorities);
     }
 }
