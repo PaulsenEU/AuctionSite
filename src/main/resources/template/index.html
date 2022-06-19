@@ -24,11 +24,11 @@
     margin-bottom: 20px;
     text-align: center;">
     <h1 sec:authorize="isAnonymous()">Register or log in!</h1>
+    <a sec:authorize="isAnonymous()" class="btn btn-primary" th:href="@{/registration}">Register</a>
+    <a sec:authorize="isAnonymous()" class="btn btn-secondary" th:href="@{/login}">Log in</a>
     <h1 sec:authorize="isAuthenticated()">
         Welcome back, <span sec:authentication="name"></span>
     </h1>
-    <a class="btn btn-primary" th:href="@{/registration}">Register</a>
-    <a class="btn btn-secondary" th:href="@{/login}">Log in</a>
 </div>
 
 </body>

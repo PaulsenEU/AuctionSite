@@ -41,8 +41,10 @@
                 <td th:text="${auction.getContent()}"></td>
                 <td th:text="${auction.getCreatedAt().getDayOfMonth()}+'.'+${auction.getCreatedAt().getMonthValue()}+'.'+${auction.getCreatedAt().getYear()}+' '+${auction.getCreatedAt().getHour()}+':'+${auction.getCreatedAt().getMinute()}"></td>
                 <td>
-                    <a th:href="@{/auction/{id}(id=${auction.getId()})}" class="btn btn-primary m-1">Details</a>
-                    <a th:href="@{/auction/edit/{id}(id=${auction.getId()})}" class="btn btn-secondary m-1">Edit</a>
+<!--                    <a class="nav-item" th:if="${#authentication.getPrincipal().getUsername()} == ${auction.getOwner().getUsername()}">-->
+                        <a th:href="@{/auction/{id}(id=${auction.getId()})}" class="btn btn-primary m-1">Details</a>
+                        <a th:href="@{/auction/edit/{id}(id=${auction.getId()})}" class="btn btn-secondary m-1">Edit</a>
+<!--                    </a>-->
                 </td>
             </tr>
         </table>

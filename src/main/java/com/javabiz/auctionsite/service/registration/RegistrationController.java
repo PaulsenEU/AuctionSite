@@ -41,7 +41,6 @@ public class RegistrationController {
 
     @GetMapping("/loginSuccessful")
     public String loggedIn(Model model, Authentication authentication) {
-        System.out.print("USERNAME: " + authentication.getName());
         return "login/loginSuccessful";
     }
 

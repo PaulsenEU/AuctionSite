@@ -31,6 +31,7 @@
                 <th>Username</th>
                 <th>Age</th>
                 <th>Role</th>
+                <th></th>
             </tr>
             <tr th:each="user : ${userList}">
                 <td th:text="${user.getId()}"></td>
@@ -38,7 +39,21 @@
                 <td th:text="${user.getSurname()}"></td>
                 <td th:text="${user.getUsername()}"></td>
                 <td th:text="${user.getAge()}"></td>
-                <td th:text="${user.getRole()?.name()}"></td>
+                <td th:text="${user.getRole()?.name()}">
+                <td>
+                    <div th:if="${user.getRole()?.name()!='ADMIN'}">
+                        <div class="dropdown">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                            Change role
+                        </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" th:href="@{/users/{id}(id=${user.getId()}, role='USER')}">User</a></li>
+                                <li><a class="dropdown-item" th:href="@{/users/{id}(id=${user.getId()}, role='PREMIUM_USER')}">Premium User</a></li>
+                                <li><a class="dropdown-item" th:href="@{/users/{id}(id=${user.getId()}, role='ADMIN')}">Admin</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
             </tr>
         </table>
     </div>
