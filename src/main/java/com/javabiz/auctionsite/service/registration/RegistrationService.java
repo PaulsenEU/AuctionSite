@@ -1,5 +1,6 @@
 package com.javabiz.auctionsite.service.registration;
 
+import com.javabiz.auctionsite.service.commons.UserDto;
 import com.javabiz.auctionsite.service.model.Role;
 import com.javabiz.auctionsite.service.model.UserModel;
 import com.javabiz.auctionsite.service.usermanagement.UserRepository;
@@ -13,7 +14,7 @@ public class RegistrationService {
 
     private UserRepository userRepository;
 
-    public UserModel register(RegistrationRequest request) {
+    public UserModel register(UserDto request) {
         var user = new UserModel();
         var encodedPassword = new BCryptPasswordEncoder().encode(request.getPassword());
         user.setEmail(request.getEmail());

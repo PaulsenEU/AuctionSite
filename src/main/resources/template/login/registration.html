@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col"></div>
         <div class="col-6">
-            <form th:action="@{/registration}" th:object="${user}" method="POST">
+            <form action="#" th:action="@{/registration}" th:object="${user}" method="POST">
                 <div class="mt-3">
                     <label for="nameInput">Name</label>
                     <input th:field="*{name}" id="nameInput" type="text" class="form-control" required/>

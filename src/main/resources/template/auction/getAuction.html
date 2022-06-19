@@ -44,7 +44,7 @@
                 <form th:action="@{/auction/{id}/offers(id=${auction.getId()})}" th:method="get">
                     <button class="btn btn-info m-1" type="submit">See offers</button>
                 </form>
-                <a th:href="@{/auction/{id}/offer(id=${auction.getId()})}" class="btn btn-success">Make an offer</a>
+                <a th:href="@{/auction/{id}/offer(id=${auction.getId()})}" sec:authorize="isAuthenticated()" class="btn btn-success">Make an offer</a>
             </div>
         </div>
     </div>

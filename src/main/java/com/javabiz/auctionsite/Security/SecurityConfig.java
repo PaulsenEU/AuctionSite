@@ -55,11 +55,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/registration").permitAll()
+                .antMatchers("/registration**","/js/**",
+                        "/css/**",
+                        "/img/**",
+                        "/webjars/**").permitAll()
                 .antMatchers("/register_success").permitAll()
-                .antMatchers("/auction").hasAnyRole("USER", "PREMIUM_USER", "ADMIN")
+                .antMatchers("/auction*").permitAll()
                 .antMatchers("/h2-console/*").permitAll()
-                .antMatchers("/users").hasAnyRole("ADMIN")
+                .antMatchers("/users*").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
