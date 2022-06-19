@@ -26,7 +26,7 @@
             <h1 class="heading">Auction details</h1>
             <div>
                 <a th:href="@{/auction/edit/{id}(id=${auction.getId()})}" class="btn btn-secondary m-1">Edit</a>
-                <form th:action="@{/auction/{id}(id=${auction.getId()})}" th:method="delete">
+                <form th:action="@{/auction/{id}(id=${auction.getId()})}" th:method="DELETE">
                     <button class="btn btn-danger m-1" type="submit">Delete</button>
                 </form>
             </div>

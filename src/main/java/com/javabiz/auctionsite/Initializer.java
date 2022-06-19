@@ -10,6 +10,7 @@ import com.javabiz.auctionsite.service.model.UserModel;
 import com.javabiz.auctionsite.service.usermanagement.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,7 +24,7 @@ public class Initializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        UserModel userModel1 = addUser("Anna", "Nowak", "anowak", "haslo123", 18, Role.USER);
+        UserModel userModel1 = addUser("Anna", "Nowak", "anowak", "haslo123", 18, Role.ADMIN);
         UserModel userModel2 = addUser("Ludiwik", "Kret", "kret", "haslo123", 25, Role.USER);
         UserModel userModel3 = addUser("Michał", "Kowalski", "kowal", "haslo123", 30, Role.PREMIUM_USER);
         UserModel userModel4 = addUser("Patrycja", "Komar", "pati", "haslo123", 19, Role.USER);
@@ -49,7 +50,8 @@ public class Initializer implements CommandLineRunner {
     }
 
     public UserModel addUser(String name, String surname, String username, String password, int age, Role role){
-        UserModel userModel = new UserModel(name, surname, username, username+"@gmail.com", password, age, role);
+        var encryptedPassword = new BCryptPasswordEncoder().encode(password);
+        UserModel userModel = new UserModel(name, surname, username, username+"@gmail.com", encryptedPassword, age, role);
         userRepository.save(userModel);
         return userModel;
     }
