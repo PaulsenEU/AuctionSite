@@ -10,12 +10,14 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
 </head>
 <body>
-<h1 class="heading">Registration</h1>
+<h1 style="margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;">Registration</h1>
 <div class="container">
     <div class="row">
         <div class="col"></div>
         <div class="col-6">
-            <form th:action="" th:object="${user}" method="post">
+            <form th:action="@{/registration}" th:object="${user}" method="POST">
                 <div class="mt-3">
                     <label for="nameInput">Name</label>
                     <input th:field="*{name}" id="nameInput" type="text" class="form-control" required/>
@@ -42,7 +44,8 @@
                     <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error">Password error</span>
                 </div>
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-success">Register</button>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <a th:href="@{/login}" class="btn btn-secondary">Log in! </a>
                 </div>
             </form>
         </div>
