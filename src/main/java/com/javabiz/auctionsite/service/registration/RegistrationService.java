@@ -5,13 +5,15 @@ import com.javabiz.auctionsite.service.model.Role;
 import com.javabiz.auctionsite.service.model.UserModel;
 import com.javabiz.auctionsite.service.usermanagement.UserRepository;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
 public class RegistrationService {
-
+    private static final Logger log = LogManager.getLogger(RegistrationService.class);
     private UserRepository userRepository;
 
     public UserModel register(UserDto request) {
@@ -26,6 +28,7 @@ public class RegistrationService {
         user.setRole(Role.USER);
         userRepository.save(user);
 
+        log.info("User "+user.getUsername()+" registered successfully.");
         return user;
     }
 }

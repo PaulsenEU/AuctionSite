@@ -5,15 +5,16 @@ import com.javabiz.auctionsite.service.model.Offer;
 import com.javabiz.auctionsite.service.commons.AuctionDto;
 import com.javabiz.auctionsite.service.commons.OfferDto;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-@Slf4j
 public class AuctionService {
+    private static final Logger log = LogManager.getLogger(AuctionService.class);
     private final AuctionRepository auctionRepository;
     private final OfferRepository offerRepository;
     private final AuctionMapper auctionMapper;

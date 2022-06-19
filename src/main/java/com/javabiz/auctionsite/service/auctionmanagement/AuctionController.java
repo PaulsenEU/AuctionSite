@@ -1,12 +1,10 @@
 package com.javabiz.auctionsite.service.auctionmanagement;
 
-import com.javabiz.auctionsite.Security.UserDetailsServiceImplementation;
 import com.javabiz.auctionsite.service.commons.OfferDto;
 import com.javabiz.auctionsite.service.mailservice.MailService;
 import com.javabiz.auctionsite.service.model.Auction;
 import com.javabiz.auctionsite.service.commons.AuctionDto;
 import com.javabiz.auctionsite.service.model.Offer;
-import com.javabiz.auctionsite.service.model.UserModel;
 import com.javabiz.auctionsite.service.usermanagement.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;

@@ -2,7 +2,8 @@ package com.javabiz.auctionsite.service.mailservice;
 
 import com.javabiz.auctionsite.service.model.UserModel;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,8 +14,8 @@ import java.util.Objects;
 
 @Service
 @AllArgsConstructor
-@Slf4j
 public class MailService {
+    private static final Logger log = LogManager.getLogger(MailService.class);
     private final JavaMailSender javaMailSender;
     private final Environment environment;
 

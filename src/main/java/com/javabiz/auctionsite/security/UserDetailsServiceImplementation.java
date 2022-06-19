@@ -1,4 +1,4 @@
-package com.javabiz.auctionsite.Security;
+package com.javabiz.auctionsite.security;
 
 import com.javabiz.auctionsite.service.usermanagement.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

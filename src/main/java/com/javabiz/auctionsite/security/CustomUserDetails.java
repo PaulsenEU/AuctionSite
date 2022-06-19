@@ -1,6 +1,5 @@
-package com.javabiz.auctionsite.Security;
+package com.javabiz.auctionsite.security;
 
-import com.javabiz.auctionsite.service.model.Role;
 import com.javabiz.auctionsite.service.model.UserModel;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
