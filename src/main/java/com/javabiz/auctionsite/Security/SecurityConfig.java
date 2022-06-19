@@ -65,10 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users*").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
+                .formLogin().defaultSuccessUrl("/registration/loginSuccessful", true).permitAll()
                 .and()
                 .logout().permitAll()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/registration/logoutSuccessful");
         http
                 .headers().frameOptions().sameOrigin();
         http

@@ -39,14 +39,15 @@ public class RegistrationController {
         return "login/registration_success";
     }
 
-//    @RequestMapping(value="/logout", method=RequestMethod.GET)
-//    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-//
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        if (auth != null){
-//            new SecurityContextLogoutHandler().logout(request, response, auth);
-//        }
-//        return "redirect:/";
-//    }
+    @GetMapping("/loginSuccessful")
+    public String loggedIn(Model model, Authentication authentication) {
+        System.out.print("USERNAME: " + authentication.getName());
+        return "login/loginSuccessful";
+    }
+
+    @GetMapping("/logoutSuccessful")
+    public String loggedOut(Model model) {
+        return "login/logoutSuccessful";
+    }
 }
 
