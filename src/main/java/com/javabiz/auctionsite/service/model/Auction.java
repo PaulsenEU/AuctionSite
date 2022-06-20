@@ -4,12 +4,16 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Entity
+@Table(name = "auction")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,6 +31,9 @@ public class Auction {
     private String content;
     // If auction is active
     private boolean ongoing;
+    @OneToMany(mappedBy = "auction")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<Offer> offerList;
     @OneToOne
     private Offer winningOffer;
     @Column(name = "created_at")

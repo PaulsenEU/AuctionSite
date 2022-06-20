@@ -146,7 +146,7 @@ public class AuctionController {
         return "redirect:/auction/" + id;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/delete")
     public String deleteAuction(@PathVariable("id") Long id, Authentication authentication) {
         Auction auction = auctionService.findAuction(id);
         if(!Objects.equals(auction.getOwner().getUsername(), authentication.getName())){

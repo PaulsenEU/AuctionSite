@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col"></div>
         <div class="col-6">
-            <form class="col" th:action="@{/auction/{id}/update(id=${auctionId})}" th:object="${auction}" method="PUT">
+            <form class="col" action="#" th:action="@{/auction/{id}/update(id=${auctionId})}" th:object="${auction}" th:method="PUT">
                 <div>
                     <label for="titleInput">Title</label>
                     <input th:field="*{title}" id="titleInput" type="text" class="form-control" placeholder="Note title" required/>

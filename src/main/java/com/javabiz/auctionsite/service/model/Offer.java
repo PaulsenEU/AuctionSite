@@ -16,7 +16,7 @@ public class Offer {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    @OneToOne
+    @ManyToOne
     private Auction auction;
     @OneToOne
     private UserModel offering;
