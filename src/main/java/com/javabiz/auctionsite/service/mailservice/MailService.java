@@ -1,5 +1,6 @@
 package com.javabiz.auctionsite.service.mailservice;
 
+import com.javabiz.auctionsite.service.model.Offer;
 import com.javabiz.auctionsite.service.model.UserModel;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
@@ -19,14 +20,20 @@ public class MailService {
     private final JavaMailSender javaMailSender;
     private final Environment environment;
 
-    public void sendConfirmationMailToSeller(UserModel seller){
-        sendEmail(seller.getEmail(), "Congrats! You just sold something", "Someone just bough the objects of your auction.");
-        log.info("Mail send to the seller with id {}.", seller.getId());
+    public void sendConfirmationMailToSeller(Offer offer){
+        String to = offer.getAuction().getOwner().getEmail();
+        String subject = "Congrats! You just sold "+offer.getAuction().getTitle();
+        String content = offer.getAuction().getTitle()+" was just bought by "+offer.getOffering().getUsername()+". Soon you'll get "+offer.getPrice()+".";
+        sendEmail(to, subject, content);
+        log.info("Mail send to the seller with email {}.", to);
     }
 
-    public void sendConfirmationMailToBuyer(UserModel buyer){
-        sendEmail(buyer.getEmail(), "Congrats! You just bought something", "You just bought something amazing.");
-        log.info("Mail send to the buyer with id {}.", buyer.getId());
+    public void sendConfirmationMailToBuyer(Offer offer){
+        String to = offer.getOffering().getEmail();
+        String subject = "Congrats! You just bought "+offer.getAuction().getTitle();
+        String content = offer.getAuction().getTitle()+" is yours! Please pay "+offer.getPrice()+" as soon as possible. "+offer.getAuction().getOwner().getUsername()+" is waiting to send you your delivery.";
+        sendEmail(to, subject, content);
+        log.info("Mail send to the buyer with email {}.", to);
     }
 
     @Async

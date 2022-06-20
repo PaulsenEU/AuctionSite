@@ -67,8 +67,8 @@ public class AuctionController {
         }
         else {
             auctionService.endAuction(id, offerId);
-            mailService.sendConfirmationMailToSeller(auction.getOwner());
-            mailService.sendConfirmationMailToBuyer(offer.getOffering());
+            mailService.sendConfirmationMailToSeller(offer);
+            mailService.sendConfirmationMailToBuyer(offer);
             return "redirect:/auction/";
         }
     }
