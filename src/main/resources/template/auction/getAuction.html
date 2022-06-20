@@ -29,7 +29,7 @@
             <div>
                 <a class="nav-item" th:if="${#authentication.getPrincipal().getUsername()} == ${auction.getOwner()?.getUsername()}">
                 <a th:href="@{/auction/edit/{id}(id=${auction.getId()})}" class="btn btn-secondary m-1">Edit</a>
-                <form th:action="@{/auction/{id}(id=${auction.getId()})}" th:method="DELETE">
+                <form action="#" th:action="@{/auction/{id}/delete(id=${auction.getId()})}" th:method="delete">
                     <button class="btn btn-danger m-1" type="submit">Delete</button>
                 </form>
                     <form th:action="@{/auction/{id}/offers(id=${auction.getId()})}" th:method="get">
