@@ -1,0 +1,15 @@
+Tytuł: AuctionSite
+Autorzy: Paweł Awramiuk, Aleksandra Drozdowska, Paweł Szczęsny
+
+Projects aim
+Main aim of the project was the implementation of a simple auction site in Java Spring Boot technology.
+
+Installation
+In order to install an application we need to install Java version 8, Hibernate and newest Postgresql version. After installing Postgresql you need to create database user and set it in application.properties along with password. After that we have to run application in an IDE. In case of errors Maven Compile is needed.
+
+
+Przeglądanie/dodawanie/edycja/usuwanie aukcji.
+Możliwość składania ofert w ramach aukcji.
+Automatyczne zakończenie aukcji z powiadomieniem autora i osoby, która wygrała aukcję poprzez e-mail.
+Uwierzytelnianie.
+
