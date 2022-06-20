@@ -90,7 +90,7 @@ public class AuctionController {
         offer.setAuction(auctionService.findAuction(id));
         auctionService.createOffer(offer);
         redirectAttributes.addFlashAttribute("success", "Record has been successfully added.");
-        return "redirect:/auction/"+id;
+        return "redirect:/auction/";
     }
 
     @GetMapping("/add")

@@ -16,7 +16,9 @@
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">Home</a>
         <a class="navbar-brand" th:href="@{/auction}">Auction</a>
-        <a class="navbar-brand" th:href="@{/users}">Users</a>
+        <a class="navbar-brand" sec:authorize="hasAnyAuthority('ADMIN')">
+            <a class="navbar-brand" th:href="@{/users}">Users</a>
+        </a>
         <a sec:authorize="isAuthenticated()" class="navbar-brand" th:href="@{/logout}">Log out</a>
     </div>
 </nav>
@@ -29,7 +31,6 @@
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Username</th>
-                <th>Age</th>
                 <th>Role</th>
                 <th></th>
             </tr>
@@ -38,7 +39,6 @@
                 <td th:text="${user.getName()}"></td>
                 <td th:text="${user.getSurname()}"></td>
                 <td th:text="${user.getUsername()}"></td>
-                <td th:text="${user.getAge()}"></td>
                 <td th:text="${user.getRole()?.name()}">
                 <td>
                     <div th:if="${user.getRole()?.name()!='ADMIN'}">

@@ -14,7 +14,9 @@
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">Home</a>
         <a class="navbar-brand" th:href="@{/auction}">Auction</a>
-        <a class="navbar-brand" th:href="@{/users}">Users</a>
+        <a class="navbar-brand" sec:authorize="hasAnyAuthority('ADMIN')">
+            <a class="navbar-brand" th:href="@{/users}">Users</a>
+        </a>
         <a sec:authorize="isAuthenticated()" class="navbar-brand" th:href="@{/logout}">Log out</a>
     </div>
 </nav>
@@ -25,7 +27,7 @@
         <div class="col-6">
             <form class="col" th:action="@{/auction/makeOffer/{id}(id=${auctionId})}" th:object="${offer}" method="post">
                 <div class="mt-3">
-                    <input th:field="*{price}" id="price" type="number" th:min="0.1" class="form-control" required/>
+                    <input th:field="*{price}" id="price" type="number" th:min="0" class="form-control" required/>
 
                     <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error">Price error</span>
                 </div>

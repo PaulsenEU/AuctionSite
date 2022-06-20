@@ -16,7 +16,9 @@
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">Home</a>
         <a class="navbar-brand" th:href="@{/auction}">Auction</a>
-        <a class="navbar-brand" th:href="@{/users}">Users</a>
+        <a class="navbar-brand" sec:authorize="hasAnyAuthority('ADMIN')">
+            <a class="navbar-brand" th:href="@{/users}">Users</a>
+        </a>
         <a sec:authorize="isAuthenticated()" class="navbar-brand" th:href="@{/logout}">Log out</a>
     </div>
 </nav>
@@ -25,10 +27,15 @@
         <div>
             <h1 class="heading">Auction details</h1>
             <div>
+                <a class="nav-item" th:if="${#authentication.getPrincipal().getUsername()} == ${auction.getOwner()?.getUsername()}">
                 <a th:href="@{/auction/edit/{id}(id=${auction.getId()})}" class="btn btn-secondary m-1">Edit</a>
                 <form th:action="@{/auction/{id}(id=${auction.getId()})}" th:method="DELETE">
                     <button class="btn btn-danger m-1" type="submit">Delete</button>
                 </form>
+                    <form th:action="@{/auction/{id}/offers(id=${auction.getId()})}" th:method="get">
+                        <button class="btn btn-info m-1" type="submit">See offers</button>
+                    </form>
+                </a>
             </div>
             <div>
                 <ul class="list-unstyled" style="font-size: x-large">
@@ -39,11 +46,6 @@
                     <li>Created at: <b th:text="${auction.getCreatedAt().getDayOfMonth()}+'.'+${auction.getCreatedAt().getMonthValue()}+'.'+${auction.getCreatedAt().getYear()}+' '+${auction.getCreatedAt().getHour()}+':'+${auction.getCreatedAt().getMinute()}"></b></li>
                     <li>Last updated at: <b th:text="${auction.getUpdatedAt().getDayOfMonth()}+'.'+${auction.getUpdatedAt().getMonthValue()}+'.'+${auction.getUpdatedAt().getYear()}+' '+${auction.getUpdatedAt().getHour()}+':'+${auction.getUpdatedAt().getMinute()}"></b></li>
                 </ul>
-            </div>
-            <div>
-                <form th:action="@{/auction/{id}/offers(id=${auction.getId()})}" th:method="get">
-                    <button class="btn btn-info m-1" type="submit">See offers</button>
-                </form>
             </div>
         </div>
     </div>

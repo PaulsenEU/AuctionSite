@@ -16,13 +16,19 @@
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">Home</a>
         <a class="navbar-brand" th:href="@{/auction}">Auction</a>
-        <a class="navbar-brand" th:href="@{/users}">Users</a>
+        <a class="navbar-brand" sec:authorize="hasAnyAuthority('ADMIN')">
+            <a class="navbar-brand" th:href="@{/users}">Users</a>
+        </a>
         <a sec:authorize="isAuthenticated()" class="navbar-brand" th:href="@{/logout}">Log out</a>
     </div>
 </nav>
 <div layout:fragment="content">
     <div class="heading">
-        <h1>Auction List <a th:href="@{/auction/add}" class="btn btn-success">Add auction</a></h1>
+        <h1>Auction List
+            <a class="navbar-brand" sec:authorize="hasAnyAuthority('PREMIUM_USER', 'ADMIN')">
+                <a th:href="@{/auction/add}" class="btn btn-success">Add auction</a>
+            </a>
+        </h1>
     </div>
     <div class="table-container">
         <table class="table table-striped">

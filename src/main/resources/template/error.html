@@ -13,7 +13,9 @@
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">Home</a>
         <a class="navbar-brand" th:href="@{/auction}">Auction</a>
-        <a class="navbar-brand" th:href="@{/users}">Users</a>
+        <a class="navbar-brand" sec:authorize="hasAnyAuthority('ADMIN')">
+            <a class="navbar-brand" th:href="@{/users}">Users</a>
+        </a>
         <a sec:authorize="isAuthenticated()" class="navbar-brand" th:href="@{/logout}">Log out</a>
     </div>
 </nav>
